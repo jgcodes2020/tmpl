@@ -35,4 +35,4 @@ constexpr void unroll_loop(std::integer_sequence<T, Is...>, F&& f) {
 ```
 C++17 *fold-expressions* allow us to expand a parameter pack using a binary operator. This trivializes the problem: we can use the comma operator to execute multiple statements one after the other, and as such we can use it to invoke the function in order.
 
-Obviously this implementation will break if you overload `operator,()`, but why would you do that?
+Obviously this implementation will break if you overload `operator,()`. So I fixed *that* by casting all function results to void, just in case.

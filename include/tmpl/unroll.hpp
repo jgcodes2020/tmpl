@@ -11,7 +11,7 @@ namespace tmpl {
   namespace details {
     template <class T, T... Is, class F>
     constexpr void unroll_loop(std::integer_sequence<T, Is...>, F&& f) {
-      (f(Is), ...);
+      (void(f(Is)), ...);
     }
   }  // namespace details
   template <class T, T max, class F>

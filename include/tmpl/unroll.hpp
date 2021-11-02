@@ -11,7 +11,7 @@ namespace tmpl {
   namespace details {
     template <class T, T... Is, class F>
     constexpr void unroll_loop(std::integer_sequence<T, Is...>, F&& f) {
-      (f(std::integral_constant<T, Is>::value), ...);
+      (f(Is), ...);
     }
   }  // namespace details
   template <class T, T max, class F>
@@ -22,6 +22,7 @@ namespace tmpl {
 #elif __cplusplus >= 201103L
 namespace tmpl {
   namespace details {
+    #if __cplusplus < 201402L
     template <class T, T... values>
     class integer_sequence {
     public:
@@ -43,7 +44,11 @@ namespace tmpl {
     template <class T, T N>
     using make_integer_sequence = typename make_integer_sequence_helper<
       T, std::integral_constant<T, N>>::type;
-      
+    #else
+    using std::integer_sequence;
+    using std::make_integer_sequence;
+    #endif
+    
     inline void init_list_noop(std::initializer_list<int>) {}
 
     template<class T, T val, class F>

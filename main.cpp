@@ -6,7 +6,7 @@ using std::cout;
 using std::endl;
 
 int main() {
-  tmpl::unroll_loop<size_t, 20>([&](size_t idx) {
+  tmpl::unroll_loop<size_t, 1000>([&](size_t idx) {
     cout << "Loop " << idx << std::endl;
   });
 }

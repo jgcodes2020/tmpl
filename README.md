@@ -3,6 +3,9 @@ Some useful things involving template meta-programming.
 They are explained below.
 
 ## Template loop unroll (`tmpl/unroll.hpp`)
+`tmpl::unroll_loop` executes a lambda function n times passing the index as its sole argument.
+It does so by using a parameter pack expansion to iterate over the needed indices.
+
 Firstly, C++11 lacks `integer_sequence` and `make_integer_sequence`, so I wrote (read: stole from StackOverflow) some boilerplate code to implement those.
 
 The real magic happens in these three functions:
